@@ -68,73 +68,74 @@
             ></v-text-field>
           </v-col>
         </v-row>
+        <div class="filters-wrapper">
+          <!-- Filtros dinâmicos compactados e estilizados abaixo do campo de busca -->
+          <v-row class="my-4 flex-nowrap" justify="left" no-gutters>
+            <!-- Filtro Cidade/Bairro -->
+            <v-col cols="8" sm="3" md="3" class="px-1 flex-shrink-0 filter-col">
+              <v-autocomplete
+                v-model="selectedCity"
+                :items="cities"
+                label="Cidade/Bairro"
+                variant="outlined"
+                clearable
+                dense
+                hide-no-data
+                hide-selected
+                prepend-inner-icon="mdi-city"
+                class="filter-field"
+                rounded="xl"
+              ></v-autocomplete>
+            </v-col>
 
-        <!-- Filtros dinâmicos compactados e estilizados abaixo do campo de busca -->
-        <v-row class="my-4" justify="center" no-gutters>
-          <!-- Filtro Cidade/Bairro -->
-          <v-col cols="12" sm="4" md="3" class="px-1">
-            <v-autocomplete
-              v-model="selectedCity"
-              :items="cities"
-              label="Cidade/Bairro"
-              variant="outlined"
-              clearable
-              dense
-              hide-no-data
-              hide-selected
-              prepend-inner-icon="mdi-city"
-              class="filter-field"
-              rounded="xl"
-            ></v-autocomplete>
-          </v-col>
+            <!-- Filtro Modalidade Esportiva -->
+            <v-col cols="8" sm="3" md="3" class="px-1 flex-shrink-0 filter-col">
+              <v-select
+                v-model="selectedSport"
+                :items="sports"
+                label="Modalidades"
+                variant="outlined"
+                clearable
+                dense
+                prepend-inner-icon="mdi-basketball"
+                class="filter-field"
+                rounded="xl"
+              ></v-select>
+            </v-col>
 
-          <!-- Filtro Modalidade Esportiva -->
-          <v-col cols="12" sm="4" md="3" class="px-1">
-            <v-select
-              v-model="selectedSport"
-              :items="sports"
-              label="Modalidade Esportiva"
-              variant="outlined"
-              clearable
-              dense
-              prepend-inner-icon="mdi-basketball"
-              class="filter-field"
-              rounded="xl"
-            ></v-select>
-          </v-col>
-
-          <!-- Filtro Data -->
-          <v-col cols="12" sm="4" md="3" class="px-1">
-            <v-menu
-              v-model="menu"
-              :close-on-content-click="false"
-              transition="scale-transition"
-              offset-y
-              min-width="290px"
-            >
-              <template v-slot:activator="{ props }">
-                <v-text-field
-                  v-model="formattedDate"
-                  label="Data"
-                  variant="outlined"
-                  prepend-inner-icon="mdi-calendar"
-                  readonly
-                  v-bind="props"
-                  clearable
-                  dense
-                  class="filter-field"
-                  rounded="xl"
-                ></v-text-field>
-              </template>
-              <v-date-picker
-                v-model="selectedDate"
-                @update:model-value="closeMenu"
-                :max="maxDate"
-                color="primary"
-              ></v-date-picker>
-            </v-menu>
-          </v-col>
-        </v-row>
+            <!-- Filtro Data -->
+            <v-col cols="8" sm="3" md="3" class="px-1 flex-shrink-0 filter-col">
+              <v-menu
+                v-model="menu"
+                :close-on-content-click="false"
+                transition="scale-transition"
+                offset-y
+                min-width="290px"
+              >
+                <template v-slot:activator="{ props }">
+                  <v-text-field
+                    v-model="formattedDate"
+                    label="Data"
+                    variant="outlined"
+                    prepend-inner-icon="mdi-calendar"
+                    readonly
+                    v-bind="props"
+                    clearable
+                    dense
+                    class="filter-field"
+                    rounded="xl"
+                  ></v-text-field>
+                </template>
+                <v-date-picker
+                  v-model="selectedDate"
+                  @update:model-value="closeMenu"
+                  :max="maxDate"
+                  color="primary"
+                ></v-date-picker>
+              </v-menu>
+            </v-col>
+          </v-row>
+        </div>
 
         <!-- Título Dinâmico Acima das Abas -->
         <h1 class="text-left ml-4">Procurando por {{ title }}</h1>
@@ -380,5 +381,32 @@ const handleLinkClick = (link) => {
 
 .v-card-subtitle {
   color: gray;
+}
+
+/* Contêiner que permite scroll horizontal */
+.filters-wrapper {
+  overflow-x: auto;
+}
+
+/* Previne quebra de linha e permite que os filtros fiquem em uma única linha */
+.v-row.flex-nowrap {
+  flex-wrap: nowrap;
+}
+
+/* Define uma largura mínima para cada coluna para manter a consistência */
+.filter-col {
+  min-width: 150px; /* Ajuste conforme necessário */
+}
+
+/* Garantir que os campos de filtro ocupem 100% da largura da coluna */
+.filter-field {
+  width: 100%;
+}
+
+/* Ajustes adicionais para responsividade e estética */
+@media (max-width: 600px) {
+  .filter-col {
+    min-width: 150px; /* Ajuste conforme necessário para telas pequenas */
+  }
 }
 </style>
