@@ -1,54 +1,7 @@
 <template>
   <v-app id="inspire">
-    <v-app-bar flat elevation="1">
-      <v-container class="d-flex align-center justify-space-between">
-        <!-- Menu dropdown em telas menores -->
-        <v-btn
-          icon
-          class="d-sm-none"
-          @click="menuVisible = !menuVisible"
-        >
-          <v-icon>mdi-menu</v-icon>
-        </v-btn>
-
-        <v-avatar
-          class="me-4"
-          color="grey-darken-1"
-          size="36"
-        ></v-avatar>
-
-        <!-- Links no menu visíveis apenas em telas grandes -->
-        <div class="d-none d-sm-flex">
-          <v-btn
-            v-for="link in links"
-            :key="link"
-            text
-            class="mx-1"
-            @click="handleLinkClick(link)"
-          >
-            {{ link }}
-          </v-btn>
-        </div>
-      </v-container>
-    </v-app-bar>
-
-    <!-- Drawer para o menu em telas pequenas -->
-    <v-navigation-drawer
-      v-model="menuVisible"
-      app
-      temporary
-      right
-    >
-      <v-list>
-        <v-list-item
-          v-for="link in links"
-          :key="link"
-          @click="menuVisible = false; handleLinkClick(link)"
-        >
-          <v-list-item-title>{{ link }}</v-list-item-title>
-        </v-list-item>
-      </v-list>
-    </v-navigation-drawer>
+    <!-- Header com Navigation Drawer -->
+    <AppBarDrawer :links="links" />
 
     <v-main class="bg-white">
       <v-container>
@@ -70,7 +23,7 @@
         </v-row>
         <div class="filters-wrapper">
           <!-- Filtros dinâmicos compactados e estilizados abaixo do campo de busca -->
-          <v-row class="my-4 flex-nowrap" justify="left" no-gutters>
+          <v-row class="my-4 flex-nowrap responsive-justify" no-gutters>
             <!-- Filtro Cidade/Bairro -->
             <v-col cols="8" sm="3" md="3" class="px-1 flex-shrink-0 filter-col">
               <v-autocomplete
@@ -232,15 +185,14 @@
 <script setup>
 import { computed, ref, watch } from 'vue';
 import logo from '@/assets/logo.png';
+import AppBarDrawer from '@/components/AppBarDrawer.vue';
 
-// Definição das variáveis reativas
-const menuVisible = ref(false);
 const menu = ref(false);
 const searchQuery = ref('');
 const links = [
-  'Entrar',
-  'Cadastrar-se',
-];
+        { name: 'Entrar', path: '/entrar' },
+        { name: 'Cadatrar', path: '/cadastrar' },
+      ];
 const tabs = ['Eventos', 'Times'];
 const title = ref(tabs[0]);
 const activeTab = ref(0);
@@ -336,12 +288,6 @@ const solicitar = (event) => {
   // Por exemplo, redirecionar para uma página de solicitação ou abrir um modal
   console.log(`Solicitando o evento: ${event.name}`);
 };
-
-// Função para lidar com cliques nos links do menu
-const handleLinkClick = (link) => {
-  // Implementar lógica de navegação aqui
-  console.log(`Link clicado: ${link}`);
-};
 </script>
 
 <style scoped>
@@ -403,10 +349,17 @@ const handleLinkClick = (link) => {
   width: 100%;
 }
 
+.responsive-justify {
+    justify-content: center;
+  }
+
 /* Ajustes adicionais para responsividade e estética */
 @media (max-width: 600px) {
   .filter-col {
-    min-width: 150px; /* Ajuste conforme necessário para telas pequenas */
+    max-width: 200px; /* Ajuste conforme necessário para telas pequenas */
+  }
+  .responsive-justify {
+    justify-content: left;
   }
 }
 </style>
