@@ -14,7 +14,7 @@
         <v-avatar
           class="me-4"
           color="grey-darken-1"
-          size="36"
+          size="50"
         ></v-avatar>
 
         <!-- Links no menu visíveis apenas em telas grandes -->
@@ -50,9 +50,7 @@
           @click="navigate(link.path)"
           :aria-label="`Navegar para ${link.name}`"
         >
-          <v-list-item-content>
-            <v-list-item-title>{{ link.name }}</v-list-item-title>
-          </v-list-item-content>
+          <v-list-item-title>{{ link.name }}</v-list-item-title>
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
@@ -66,10 +64,10 @@ export default {
   props: {
     links: {
       type: Array,
-      required: true,
+      required: false,
       default: () => [
         { name: 'Entrar', path: '/entrar' },
-        { name: 'Cadatrar', path: '/cadastrar' },
+        { name: 'Cadatrar', path: '/cadastrar' }
       ],
     },
   },
