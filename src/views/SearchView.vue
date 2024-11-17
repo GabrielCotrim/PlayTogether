@@ -34,18 +34,18 @@
         <v-tabs-items v-model="activeTab">
           <!-- Aba de Eventos -->
           <v-tab-item>
-              <v-container v-if="activeTab === 0">
+            <v-container v-if="activeTab === 0">
               <v-row>
-                  <v-col
+                <v-col
                   v-for="event in filteredEvents"
                   :key="event.name"
-                  cols="12"
-                  >
+                  cols="12" sm="12" md="6"
+                >
                   <v-card outlined class="hover-card">
-                      <v-row align="center" no-gutters>
+                    <v-row align="center" no-gutters>
                       <!-- Coluna da Imagem -->
                       <v-col cols="3" sm="2" class="d-flex align-center justify-center">
-                          <v-img
+                        <v-img
                           :src="logo"
                           max-width="150px"
                           max-height="150px"
@@ -55,51 +55,51 @@
                           class="ma-2"
                           contain
                           alt="Logo do Evento"
-                          ></v-img>
+                        ></v-img>
                       </v-col>
-
+                    
                       <!-- Coluna do Conteúdo -->
                       <v-col cols="7" sm="8">
-                          <v-card-title class="headline">{{ event.name }}</v-card-title>
-                          <v-card-subtitle class="grey--text">{{ formatDate(event.date) }}</v-card-subtitle>
-                          <v-card-text>{{ event.description }}</v-card-text>
+                        <v-card-title class="headline">{{ event.name }}</v-card-title>
+                        <v-card-subtitle class="grey--text">{{ formatDate(event.date) }}</v-card-subtitle>
+                        <v-card-text>{{ event.description }}</v-card-text>
                       </v-col>
-
+                    
                       <!-- Coluna do Botão -->
                       <v-col cols="2" sm="2" class="d-flex align-center justify-end">
-                          <v-btn
+                        <v-btn
                           color="primary"
                           @click="request(event)"
                           elevation="2"
                           class="mr-4 d-none d-sm-flex"
-                          >
+                        >
                           Solicitar
-                          </v-btn>
+                        </v-btn>
                       </v-col>
-                      </v-row>
+                    </v-row>
                   </v-card>
-                  </v-col>
+                </v-col>
               </v-row>
-              </v-container>
+            </v-container>
           </v-tab-item>
-
+        
           <!-- Aba de Times -->
           <v-tab-item>
-              <v-container v-if="activeTab === 1">
+            <v-container v-if="activeTab === 1">
               <v-row>
-                  <v-col
+                <v-col
                   v-for="team in filteredTeams"
                   :key="team.name"
-                  cols="12"
-                  >
+                  cols="12" sm="12" md="6"
+                >
                   <v-card outlined class="hover-card">
-                      <v-card-title>{{ team.name }}</v-card-title>
-                      <v-card-subtitle>{{ team.sport }}</v-card-subtitle>
-                      <v-card-text>{{ team.description }}</v-card-text>
+                    <v-card-title>{{ team.name }}</v-card-title>
+                    <v-card-subtitle>{{ team.sport }}</v-card-subtitle>
+                    <v-card-text>{{ team.description }}</v-card-text>
                   </v-card>
-                  </v-col>
+                </v-col>
               </v-row>
-              </v-container>
+            </v-container>
           </v-tab-item>
         </v-tabs-items>
     </v-container>

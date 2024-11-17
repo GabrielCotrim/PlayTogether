@@ -65,7 +65,7 @@ import { useRouter } from 'vue-router'
 //import { debounce } from 'lodash' // Opcional: para debouncing
 
 import SearchFilters from '@/components/SearchFilters.vue';
-import banner from '../assets/irl_event.png';
+import banner from '../assets/banner.png';
 
 // Acesse o router
 const router = useRouter()
