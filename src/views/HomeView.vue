@@ -79,7 +79,7 @@ const handleSearchChange = (search) => {
 
 <style scoped>
 #home {
-    width: 80%;
+    width: 90%;
     margin: 0 auto;
 }
 .banner {

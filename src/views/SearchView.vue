@@ -39,7 +39,7 @@
                 <v-col
                   v-for="event in filteredEvents"
                   :key="event.name"
-                  cols="12" sm="12" md="6"
+                  cols="12" sm="12" md="12"
                 >
                   <v-card outlined class="hover-card">
                     <v-row align="center" no-gutters>
@@ -90,7 +90,7 @@
                 <v-col
                   v-for="team in filteredTeams"
                   :key="team.name"
-                  cols="12" sm="12" md="6"
+                  cols="12" sm="12" md="12"
                 >
                   <v-card outlined class="hover-card">
                     <v-card-title>{{ team.name }}</v-card-title>
@@ -143,7 +143,7 @@ export default {
     ];
 
     const events = [
-      { name: 'Evento 1', date: '2024-09-15', description: 'Descrição do Evento 1', city: 'São Paulo', sport: 'Futebol' },
+      { name: 'Evento 1', date: '2024-09-15', description: 'Descrição do Evento 1 jkabfjhasbfhjasjhfashjfbjasfasbfbawfauas afkjnasf as afuias asd asdasd asf auhbasb asfasfasfbuas basfasfuaa', city: 'São Paulo', sport: 'Futebol' },
       { name: 'Evento 2', date: '2024-10-01', description: 'Descrição do Evento 2', city: 'Rio de Janeiro', sport: 'Basquete' },
       { name: 'Evento 3', date: '2024-11-20', description: 'Descrição do Evento 3', city: 'Belo Horizonte', sport: 'Vôlei' },
       { name: 'Evento 4', date: '2024-12-05', description: 'Descrição do Evento 4', city: 'Curitiba', sport: 'Tênis' },

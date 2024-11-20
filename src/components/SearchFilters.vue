@@ -245,7 +245,7 @@ export default {
 }
 
 .responsive-justify {
-  justify-content: center;
+  justify-content: left;
 }
 
 /* Estilização para o contêiner do ícone */
